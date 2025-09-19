@@ -100,75 +100,156 @@
     </div>
   </div>
   <div id="unity-fullscreen-button" style="display: none;"></div>
-  <script>
-    const hideFullScreenButton = "0";
-    const buildUrl = "Build";
-    const loaderUrl = buildUrl + "/v1.loader.js";
-    const config = {
-      dataUrl: buildUrl + "/v1.data.unityweb",
-      frameworkUrl: buildUrl + "/v1.framework.js.unityweb",
-      codeUrl: buildUrl + "/v1.wasm.unityweb",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "Kiz10",
-      productName: "Granny 3 Return the School",
-      productVersion: "0.0.12",
-    };
-
-    const container = document.querySelector("#unity-container");
-    const canvas = document.querySelector("#unity-canvas");
-    const loadingCover = document.querySelector("#loading-cover");
-    const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
-    const progressBarFull = document.querySelector("#unity-progress-bar-full");
-    const fullscreenButton = document.querySelector("#unity-fullscreen-button");
-    const spinner = document.querySelector('.spinner');
-
-    const canFullscreen = (function() {
-      for (const key of [
-          'exitFullscreen',
-          'webkitExitFullscreen',
-          'webkitCancelFullScreen',
-          'mozCancelFullScreen',
-          'msExitFullscreen',
-        ]) {
-        if (key in document) {
-          return true;
+    <script>
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            var meta = document.createElement('meta');
+            meta.name = 'viewport';
+            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+            document.getElementsByTagName('head')[0].appendChild(meta);
         }
-      }
-      return false;
-    }());
+        const loadingText = document.querySelector("#loading-txt");
+        let totalBytes = 0;
+        let loadedBytes = 0;
 
+        function formatSize(bytes) {
+            if (bytes > 1024 * 1024 * 1024) {
+                return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+            } else if (bytes > 1024 * 1024) {
+                return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+            } else if (bytes > 1024) {
+                return (bytes / 1024).toFixed(2) + " KB";
+            } else {
+                return bytes + " B";
+            }
+        }
+        async function getSize(url) {
+            try {
+                const res = await fetch(url, {
+                    method: "HEAD"
+                });
+                return parseInt(res.headers.get("Content-Length") || "0", 10);
+            } catch {
+                return 0;
+            }
+        }
+        async function fetchWithProgress(url) {
+            const response = await fetch(url);
+            const reader = response.body.getReader();
+            let chunks = [];
+            let received = 0;
+            while (true) {
+                const {
+                    done,
+                    value
+                } = await reader.read();
+                if (done) break;
+                received += value.length;
+                loadedBytes += value.length;
+                chunks.push(value);
+                const doneText = formatSize(loadedBytes);
+                const totalText = formatSize(totalBytes);
+                const percent = totalBytes > 0 ? ((loadedBytes / totalBytes) * 100).toFixed(1) : "?";
+                loadingText.textContent = `LOADING... ${doneText} / ${totalText} (${percent}%)`;
+            }
+            let fullBuffer = new Uint8Array(received);
+            let offset = 0;
+            for (let chunk of chunks) {
+                fullBuffer.set(chunk, offset);
+                offset += chunk.length;
+            }
+            return fullBuffer.buffer;
+        }
+        async function mergeFiles(parts) {
+            const buffers = await Promise.all(parts.map(fetchWithProgress));
+            return URL.createObjectURL(new Blob(buffers));
+        }
 
-    loadingCover.style.display = "";
+        function getParts(file, count) {
+            let parts = [];
+            for (let i = 1; i <= count; i++) {
+                parts.push(file + ".part" + i);
+            }
+            return parts;
+        }
+        let hideFullScreenButton = "0";
+        let buildUrl = "Build";
+        let loaderUrl = buildUrl + "/v1.loader.js";
+        let config = {
+            dataUrl: "",
+            frameworkUrl: "Build/v1.framework.js.unityweb",
+            codeUrl: "",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "Kiz10",
+            productName: "Granny 3 Return the School",
+            productVersion: "0.0.12",
+        };
 
-    const script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = () => {
-      createUnityInstance(canvas, config, (progress) => {
-        spinner.style.display = "none";
-        progressBarEmpty.style.display = "";
-        progressBarFull.style.width = `${100 * progress}%`;
-      }).then((unityInstance) => {
-        loadingCover.style.display = "none";
-        if (canFullscreen) {
-          if (!hideFullScreenButton) {
-            fullscreenButton.style.display = "";
+        const container = document.querySelector("#unity-container");
+        const canvas = document.querySelector("#unity-canvas");
+        const loadingCover = document.querySelector("#loading-cover");
+        const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+        const progressBarFull = document.querySelector("#unity-progress-bar-full");
+        const fullscreenButton = document.querySelector("#unity-fullscreen-button");
+        const spinner = document.querySelector('.spinner');
+
+        const canFullscreen = (function() {
+          for (const key of [
+              'exitFullscreen',
+              'webkitExitFullscreen',
+              'webkitCancelFullScreen',
+              'mozCancelFullScreen',
+              'msExitFullscreen',
+            ]) {
+            if (key in document) {
+              return true;
+            }
           }
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
-        }
-      }).catch((message) => {
-        alert(message);
-      });
-    };
-    document.body.appendChild(script);
+          return false;
+        }());
 
+        loadingCover.style.display = "";
 
+        (async () => {
+            const dataParts = getParts("Build/v1.data.unityweb", 4);
+            const wasmParts = getParts("Build/v1.wasm.unityweb", 1);
+            const allParts = [...dataParts, ...wasmParts];
+            const sizes = await Promise.all(allParts.map(getSize));
+            totalBytes = sizes.reduce((a, b) => a + b, 0);
+            const [dataUrl, wasmUrl] = await Promise.all([
+                mergeFiles(dataParts),
+                mergeFiles(wasmParts)
+            ]);
+            config.dataUrl = dataUrl;
+            config.codeUrl = wasmUrl;
 
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      container.className = "unity-mobile";
-      config.devicePixelRatio = 1.5;
-    }
+            const script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+              createUnityInstance(canvas, config, (progress) => {
+                spinner.style.display = "none";
+                progressBarEmpty.style.display = "";
+                progressBarFull.style.width = `${100 * progress}%`;
+              }).then((unityInstance) => {
+                loadingCover.style.display = "none";
+                if (canFullscreen) {
+                  if (!hideFullScreenButton) {
+                    fullscreenButton.style.display = "";
+                  }
+                  fullscreenButton.onclick = () => {
+                    unityInstance.SetFullscreen(1);
+                  };
+                }
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+            document.body.appendChild(script);
+
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+              container.className = "unity-mobile";
+              config.devicePixelRatio = 1.5;
+            }
+        })();
   </script>
 </body>
 
