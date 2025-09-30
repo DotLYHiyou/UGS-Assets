@@ -1,0 +1,405 @@
+{
+  "drop": {
+    "title": "Drops",
+    "general": {
+      "active_player": "You are taking part in the promo! Just spin to catch a Drop",
+      "active_player_progressive": "The rewards for the drop campaign are being distributed. Data is updated daily at 6:00 AM UTC-00",
+      "passive_player": "You took part in the promo!",
+      "left": "Prizes left",
+      "prize_pool": "Prize pool",
+      "rules_button": "How to play",
+      "prizes_button": "Prizes"
+    },
+    "join": {
+      "button": "Join for free",
+      "badge": "Free",
+      "loading": "Joining",
+      "join_pro_title": "Fee is",
+      "join_pro_button": "Pay fee and join",
+      "join_pro_badge": "Pro",
+      "join_balance_error": "Balance is not enough to join",
+      "errors": {
+        "CAMP_SUBSCRIPTION_PAUSED_CAMPAIGN": "This drop campaign is paused",
+        "CAMP_SUBSCRIPTION_CLOSED": "This drop campaign has already finished",
+        "CAMP_SUBSCRIPTION_PAYMENT_ERROR": "Payment error",
+        "CAMP_SUBSCRIPTION_TECHNICAL_ERROR": "Something went wrong"
+      }
+    },
+    "prize_pool": {
+      "title": "Drop prize pool",
+      "title_progressive": "Daily prize pool",
+      "column_prizes": "Prizes",
+      "column_left": "Left/Start",
+      "column_left_progressive": "Left/Total"
+    },
+    "user_wins": {
+      "title": "You won",
+      "column_date": "Date",
+      "column_time": "Time",
+      "column_value": "Value",
+      "column_game": "Game"
+    },
+    "top_wins": {
+      "title": "Recently won drops",
+      "column_id": "ID",
+      "column_date": "Date",
+      "column_time": "Time",
+      "column_prize": "Prize"
+    },
+    "rules": {
+      "title": "Rules",
+      "spin": "Just one spin to win",
+      "rtp": "Doesn't affect RTP of the game",
+      "bet": "All bets qualify unless a minimum bet is set",
+      "goal": "The higher the bet, the higher the chances of winning the prize",
+      "max_wins_per_player": "The number of prizes a single player can win in this campaign is limited to {value}.",
+      "details": {
+        "title": "All rules of Promo",
+        "description": "The \"{name}\" promotion is available for this game and runs from {from} to {to} (\"Promotion Deadline\") or until all prizes have been drawn.",
+        "agreement": "By participating in a promotion (as defined below), you hereby agree to abide by these terms and conditions.",
+        "summary": {
+          "title": "Promotion \"{value}\"",
+          "total": "The total amount of prizes is {value}.",
+          "max": "The main prize is {value}.",
+          "amount": "The number of prizes is {value}.",
+          "delay": "Prize payouts may be delayed up to 72 hours."
+        },
+        "conditions": {
+          "title": "How to take part in the \"{value}\" promotion",
+          "join": "The player needs to join the promotion-related game.",
+          "spin": "The player must make at least one spin.",
+          "bet": "Any bet placed on any eligible game may result in a maximum of one random prize from the prize pool during the promotion period.",
+          "player": "The number of prizes to win by one player is limited only by their number.",
+          "limit": "The number of prizes a single player can win is limited only by the prize pool of the campaign.",
+          "free": "Participation in the promotion will not carry any additional costs."
+        },
+        "prizes": {
+          "title": "Promotion prize table \"{value}\"",
+          "amount": "Quantity/Amount"
+        },
+        "progressive": "The progressive prize pool grows based on overall players activity within the drop campaign. Recalculation is performed daily. You can track it's dynamic in drop campaign details information"
+      }
+    }
+  },
+  "challenge": {
+    "title": "Challenges",
+    "general": {
+      "active_player": "You are taking part in the promo!",
+      "passive_player": "You took part in the promo!",
+      "rules_button": "Read challenge rules",
+      "sync_message": "Calculating results",
+      "spin_limit": "Spin\nlimit",
+      "limit_message": "Spins limit reached. Further spins won't count",
+      "left": "Spins left"
+    },
+    "join": {
+      "title": "Paste your invitation code to join the challenge",
+      "button": "I'm in!",
+      "button_auto": "Join",
+      "fee": "Fee is",
+      "loading": "Joining",
+      "badge": "Free",
+      "join_pro_badge": "Pro",
+      "join_pro_button": "Pay fee and join",
+      "join_balance_error": "Balance is not enough to join",
+      "error": {
+        "100": "You are taking part in another challenge",
+        "101": "Paste a valid code",
+        "107": "This challenge reached participants limit",
+        "206": "Payment Error",
+        "default": "Something went wrong. Please try again later"
+      }
+    },
+    "playerCode": {
+      "title": "Note",
+      "message": "Each participant is assigned a unique player ID. It may be useful if any questions arise during the challenge or for verifying your identity as a player.",
+      "button": "Copy code",
+      "toast": "Code is copied"
+    },
+    "rules": {
+      "title": "Rules",
+      "fee": "Participation fee is {value}. Fee will be taken from your balance when you join the challenge. The prize pool is formed from entry fees and is divided among the winners based on the results of the challenge in accordance with the settings",
+      "games": "Games participating the challenge: {value}",
+      "goal": "Highest multiplier wins",
+      "goal_bets": "The player with the highest total bets wins. Scoring rule: 1 point for every {value} bet",
+      "goal_mult": "The player with the highest sum of multipliers wins. The top {value} multipliers during the Challenge period are considered",
+      "goal_sum": "The player with the highest total sum of multipliers wins. All multipliers accumulated during the challenge period are counted",
+      "winner": "If players have equal top multipliers, then the one who gets it first - win",
+      "winner_bets": "If players have the same total bets, the one who reached it first wins",
+      "winner_mult": "If players have the same sum of multipliers, the winner is the one who achieved it first",
+      "winner_sum": "If players have the same total multiplier sum, the one who reaches it first wins",
+      "id": "Changing the currency will switch your player ID, and your challenge progress will be recorded separately for each player ID",
+      "bet_eur": "Min bet is {value}",
+      "bet_ext": "Min bet is {value} ({ext})",
+      "bet": "Any bet level is allowed",
+      "spin_denied": "The features you have purchased will not be accounted for in the challenge results",
+      "spin_feature": "Only purchased and won features will be taken into account for the challenge",
+      "spin": "Any spin (incl. extra buys) counts in the challenge",
+      "limit_on": "Spins: {value} per player to get the highest multiplier. You'll be notified when your spins are done",
+      "limit": "No limit for spin count",
+      "one_participant": "If there's only one participant, the challenge is canceled, and fees are refunded",
+      "fewer_participant": "If participants are fewer than prize spots, the challenge is canceled, and fees are refunded",
+      "prizes_distribution": "Prizes are awarded to active players by max multiplier, others by join order",
+      "closed_after_start": "For challenges where joining is closed after the start: the participant count is checked at the start of the challenge",
+      "opened_after_start": "For challenges where joining is allowed after the start: the participant count is checked when prizes are distributed",
+      "limit_participants": "Only a limited number of participants can join the challenge"
+    },
+    "modals": {
+      "cancelled": {
+        "title": "This challenge was cancelled due to insufficient number of participants",
+        "subtitle": "Try your luck in other challenges"
+      }
+    },
+    "leaderboard": {
+      "title": "Leaderboard",
+      "title_full": "Full leaderboard",
+      "title_player": "My result",
+      "column_rank": "#",
+      "column_id": "Player id",
+      "column_result": "Multiplier",
+      "column_result_bets": "Bets sum",
+      "column_result_mult": "Multiplier sum",
+      "loading_text": "Loading data",
+      "button": "View full leaderboard",
+      "no_data": "No players participating at the moment",
+      "prize": "Prize"
+    },
+    "games": {
+      "title": "Participating games",
+      "more": "And {value} more"
+    },
+    "p2p": {
+      "title": "Create challenge",
+      "challenge_mode": "Challenge mode",
+      "challenge_type": "Challenge type",
+      "challenge_image": "Challenge image",
+      "multiplier_count": "Max multiplier count",
+      "fee": "Fee",
+      "entry_fee": "Entry fee",
+      "fee_is": "Fee is {value}",
+      "pool_is": "Prize pool is {value}",
+      "games": "Games",
+      "privacy": "Privacy",
+      "private": "Private",
+      "public": "Public",
+      "joining_code": "Joining code",
+      "start": "Start",
+      "end": "End",
+      "about_limit": "You can enable either the Spin limit or the Min bet limit at the same time",
+      "spin_limit": "Spin limit",
+      "min_bet": "Min bet",
+      "buy_features_condition": "Buy features condition",
+      "any_spin_allowed": "Any spin allowed",
+      "only_buy_features": "Only buy features",
+      "buy_features_excluded": "Buy features excluded",
+      "prizes_distribution": "Prizes distribution",
+      "add": "Add",
+      "total": "Total",
+      "should_be": "Should be 100%",
+      "joining_rules": "Joining rules",
+      "can_join": "Players can join after the challenge started",
+      "not_join": "Players can not join after the challenge started",
+      "agreements_debited": "I confirm that I'm creating a challenge with a participation fee of {value}, which will be debited from my balance when I hit “CREATE CHALLENGE”",
+      "agreements_debited_pool": "I confirm that I'm creating a challenge with a prize pool of {value}, which will be debited from my balance when I hit “CREATE CHALLENGE”",
+      "agreements_cant_edit": "The challenge can't be edited or cancelled once it's created",
+      "create": "Pay fee and create challenge",
+      "select_start_date": "Select start date",
+      "select_end_date": "Select end date",
+      "form_keep_editing": "Keep Editing",
+      "got_it": "Got it",
+      "challenge_creating": "Creating challenge",
+      "select_all": "Select all",
+      "set": "Set",
+      "challenge_pay_fee_create": "Pay fee and create challenge",
+      "challenge_deposit_prize_create": "Deposit prize pool and create challenge",
+      "change_image": "Change Image",
+      "form_discard": "Discard form",
+      "form_leave_warning": "By leaving this form you'll lose all data you've filled in",
+      "select_games": "Select games",
+      "congratulations": "Congratulations!",
+      "you_created": "You've created",
+      "challenge": "Challenge #{value}",
+      "invite_more": "Invite more people to compete and have fun!",
+      "invite_code_first_part": "Invite more people and share the join code",
+      "invite_code_second_part": "to compete and have fun!",
+      "cant_join_challenge_title": "You can't join challenge",
+      "cant_join_challenge_subtitle": "This challenge allows to join new participants only before it started.",
+      "type_options": {
+        "max_multiplayer": "Max Multiplier",
+        "top_multiplayer_sum": "Top Multiplier Sum",
+        "bets_sum": "Bets Sum",
+        "multiplayers_sum": "Accumulated Multiplier"
+      },
+      "mode_options": {
+        "friends": {
+          "title": "“Friends party”",
+          "option_organizer": "You join the challenge as a participant",
+          "option_participant": "Everyone, including you, pays an entry fee",
+          "option_prize_pool": "The prize pool is the sum of all entry fees"
+        },
+        "influencer": {
+          "title": "“Influencer's party”",
+          "option_organizer": "You don’t join the challenge",
+          "option_participant": "Participation is free for everyone",
+          "option_prize_pool": "The prize pool is paid from your balance"
+        }
+      },
+      "tooltip": {
+        "mode": "Choose the type of challenge you want to create. Based on your selection, the relevant fields to fill out will appear below.",
+        "type": "Choose the type of challenge you want to create. Depending on your selection, the system will apply different rules for generating the challenge leaderboard.",
+        "image": "Select an image from the provided list to be displayed on your challenge card for all participants.",
+        "games": "Select one or more games from the list provided where your challenge will be active.",
+        "fee": "Specify the fee amount in EUR that will be deducted from participants' balances. This amount will be used to form the challenge prize pool and will be converted at the exchange rate at the time of payment.",
+        "privacy": "Choose the type of challenge. Access to a private challenge is only available via an invite code and payment of the entry fee. In public challenges, players can join by paying the entry fee.",
+        "joining_code": "Generate or enter a unique joining code that players can use to join your private challenge.",
+        "start": "Specify the start date and time of the challenge based on your device. Each participant will see the start time in their local time zone.",
+        "end": "Specify the end date and time of the challenge based on your device. Each participant will see the end time in their local time zone.",
+        "spin_limit": "Specify the limit on the number of spins that will be counted for each participant in the challenge.",
+        "min_bet": "Specify the minimum bet amount in EUR for which a player's bet will be counted in the challenge.",
+        "paid_features_condition": "Choose the condition for spin participation in the challenge: Any Spin Allowed: All spins and purchased bonuses of the player are allowed.  Only Bought Features: Only the player's purchased bonuses are allowed.  Bought Features Excluded: Purchased bonuses of the player do not participate in the challenge.",
+        "prizes_distribution": "Specify the number of prize positions and the distribution of the prize pool in percentages between them. The percentages should be listed from highest to lowest, and their total must equal 100%.",
+        "prizes_distribution_money": "Specify the number of prize positions and the distribution of the prize pool in EUR. The amounts should be listed from highest to lowest, and the entire prize pool cannot be awarded to just one winner.",
+        "joining_rules": "Choose the rule for player participation in the challenge.",
+        "select_games": "Select games",
+        "multiplier": "Specify the number of highest multipliers that will be considered when summing the bets.",
+        "feature_conditions": {
+          "header": "Choose the condition for spin participation in the challenge:",
+          "allowed_title": "Any Spin Allowed:",
+          "allowed_description": "All spins and purchased bonuses of the player are allowed.",
+          "bought_title": "Only Buy Features:",
+          "bought_description": "Only the player's purchased bonuses are allowed.",
+          "bought_excluded_title": "Buy Features Excluded:",
+          "bought_excluded_description": "Purchased bonuses of the player do not participate in the challenge."
+        }
+      },
+      "error": {
+        "must_greater": "Value must be greater than {value}",
+        "must_less": "Value must be less than {value}",
+        "game": "Add at least one game",
+        "fee": "Set fee",
+        "characters": "Must have {value} characters",
+        "date": "Can't be in the past",
+        "min_bet": "The minimum bet must be at least {value}",
+        "max_bet": "The maximum bet cannot exceed {value} (considering currency conversion)",
+        "only_letters_numbers": "Only letters and numbers allowed",
+        "organizer_participating": "Can't create the challenge: the organizer is already participating in one or more selected games",
+        "amount_too_high": "The amount cannot exceed {value}",
+        "insufficient_balance": "Insufficient balance",
+        "code_length": "The code must be exactly {value} characters long",
+        "start_date_invalid": "The start date cannot be later than the end date",
+        "start_date_too_soon": "The challenge must start at least {value} minutes from now",
+        "min_bet_too_low": "The minimum bet must be at least {value} (considering currency conversion)",
+        "max_bet_too_high": "The maximum bet cannot exceed {value} (considering currency conversion)",
+        "prize_cannot_be": "The prize place cannot be {value}",
+        "prize_exceeds_previous": "The prize for this place cannot exceed the previous place's reward",
+        "code_invalid": "The code must contain only Latin letters and digits",
+        "cannot_be_empty": "Can't be empty",
+        "response_title_default": "Something went wrong",
+        "response_subtitle_default": "Please try again later or contact support",
+        "response_title_206": "Payment Error",
+        "response_subtitle_206": "Your payment couldn't be processed. Please check your balance or try again later",
+        "response_title_100": "You're Already in a Challenge",
+        "response_subtitle_100": "You've already joined this challenge or another one with intersecting games.",
+        "min_bet_present": "Can't be set when min bet is present",
+        "spin_limit_present": "Can't be set when spin limit is present"
+      }
+    }
+  },
+  "games": {
+    "title": "Games",
+    "empty_title": "There are no games matching your request",
+    "empty_subtitle": "Try to adjust filters and search request",
+    "search_placeholder": "Search games",
+    "filter": {
+      "title": "Filter games",
+      "label": {
+        "volatility": "Volatility",
+        "game_type": "Game type",
+        "features": "Features",
+        "events": "Events"
+      },
+      "button": {
+        "clear": "Clear",
+        "filter": "Filter"
+      },
+      "volatility": {
+        "all": "All",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "event": {
+        "select": "Select an event",
+        "all": "All events"
+      }
+    },
+    "sort": {
+      "title": "Sort by",
+      "sort_types": {
+        "popular": "Popular first",
+        "newest": "Newest first",
+        "oldest": "Oldest first",
+        "hot": "Hot games first",
+        "cold": "Cold games first"
+      }
+    }
+  },
+  "profile": {
+    "title": "Loyalty",
+    "level": "Level",
+    "xp": "xp",
+    "id_title": "Loyalty profile ID",
+    "telegram_button_title": "link telegram",
+    "telegram_linked": "Telegram linked",
+    "privileges": {
+      "current_title": "Current rewards",
+      "next_title": "Next rewards",
+      "next_empty": "New rewards will be added soon",
+      "type_title": {
+        "extra_points": "{value} Extra Points",
+        "p2p_challenges": "P2P Challenges",
+        "big_wins": "Big Wins",
+        "mystery_box": "Mystery Box"
+      }
+    },
+    "error": {
+      "title": "We couldn't load your profile info",
+      "sub_title": "Try to reload page"
+    }
+  },
+  "common": {
+    "event_list": {
+      "active_title": "Active and planned events",
+      "ended_title": "Recently ended events",
+      "empty": {
+        "title": "There are no active and planned events at the moment",
+        "sub_title": "We'll let you know when there's any activity here"
+      }
+    },
+    "error": {
+      "list_title": "Can't load events",
+      "details_title": "Can't load event details",
+      "leaderboard_title": "Can't load leaderboard",
+      "games_title": "Can't load games",
+      "sub_title": "Try to see later"
+    },
+    "event_details": {
+      "empty_title": "Empty details view"
+    },
+    "event_status": {
+      "active": "Active",
+      "planned": "Planned",
+      "checking_status": "Checking status"
+    },
+    "event_timer": {
+      "start_title": "Starts in",
+      "end_title": "Ends in"
+    },
+    "min_bet": "Minimum bet\nrequirement",
+    "event_finished": "Event ended",
+    "button": {
+      "roll_up": "Roll up",
+      "show_more": "Show more"
+    }
+  }
+}
