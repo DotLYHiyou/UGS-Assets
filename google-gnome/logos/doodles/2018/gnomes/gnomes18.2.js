@@ -1205,7 +1205,7 @@
         ec = 0 <= B.indexOf("MSIE"),
         fc = ec && 0 <= B.indexOf("MSIE 8.");
       A(B, "GT-I9300") && A(B, "Chrome");
-      var gc = A(Yb, "/logos/") && A(Yb, ".html"),
+      var gc = A(Yb, "logos/") && A(Yb, ".html"),
         hc = function() {
           return !!document.getElementById("fkbx") && !cc
         },
@@ -57584,8 +57584,8 @@
       };
       z(Je, we);
       var M = {
-          Jf: new Ie("/logos/2018/gnomes/", "sounds"),
-          iv: new Ie("/logos/2018/gnomes/", "intro")
+          Jf: new Ie("logos/2018/gnomes/", "sounds"),
+          iv: new Ie("logos/2018/gnomes/", "intro")
         },
         L = {
           xy: new K(M.Jf, 0, 660.5),
@@ -60443,7 +60443,7 @@
         return d
       };
       var T = function() {
-        ui.call(this, "/logos/2018/gnomes/", xi)
+        ui.call(this, "logos/2018/gnomes/", xi)
       };
       z(T, ui);
       var xi = [{
@@ -60549,7 +60549,7 @@
         a && (h && c.scale(-1, 1), b = 10 * f / b[3], c.drawImage(a, d - (f + b) / 2, e - (g + b) / 2, f + b, g + b), h && c.scale(-1, 1))
       };
       var oj = function() {
-        gj.call(this, "/logos/2018/gnomes/", nj)
+        gj.call(this, "logos/2018/gnomes/", nj)
       };
       v(oj, gj);
       var nj = ["svg-sprite.svg", "svg-mobile-sprite.svg", "svg-desktop-sprite.svg"],
