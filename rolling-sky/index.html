@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Unity WebGL Player | Rolling Sky</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    #gameContainer {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      margin: 0 auto;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  </style>
+
+  <script src="Build/UnityLoader.js" type="8b0564566a358200863a102b-text/javascript"></script>
+
+  <script type="8b0564566a358200863a102b-text/javascript">
+    function UnityProgress(gameInstance, progress) {
+      console.log("Loading: " + Math.round(progress * 100) + "%");
+    }
+
+    let gameInstance;
+
+    function resizeGame() {
+      const container = document.getElementById('gameContainer');
+      container.style.width = window.innerWidth + 'px';
+      container.style.height = window.innerHeight + 'px';
+
+      // Optional: force canvas resize
+      if (gameInstance && gameInstance.Module) {
+        gameInstance.Module.canvas.width = window.innerWidth;
+        gameInstance.Module.canvas.height = window.innerHeight;
+      }
+    }
+
+    window.addEventListener("resize", resizeGame);
+    window.addEventListener("orientationchange", resizeGame);
+
+    window.addEventListener("load", function() {
+      gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGL.json", {
+        onProgress: UnityProgress
+      });
+      resizeGame();
+    });
+  </script>
+</head>
+
+<body>
+  <div id="gameContainer"></div>
+  <script src="rocket-loader.min.js" data-cf-settings="8b0564566a358200863a102b-|49" defer></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"800f0389d5704166b29b19cb44996109","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+
+</html>
