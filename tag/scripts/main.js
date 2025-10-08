@@ -270,40 +270,40 @@
   const isSafari = /safari/i.test(navigator.userAgent) && !/(chrome|chromium|edg\/|OPR\/|nwjs)/i.test(navigator.userAgent);
   let resolveCounter = 0;
 
-function AddScript(a) {
-    const b = document.createElement("script");
-    b.async = !1;
-    b.type = "module";
-    return a.isStringSrc ? new Promise(c => {
-        const d = "c3_resolve_" + resolveCounter;
-        ++resolveCounter;
-        self[d] = c;
-        b.textContent = a.str + `\n\nself["${d}"]();`;
-        document.head.appendChild(b)
-    }
-    ) : new Promise( (c, d) => {
-        b.onload = c;
-        b.onerror = d;
-        b.src = a;
-        document.head.appendChild(b)
-    }
-    )
-}
-let didCheckWorkerModuleSupport = !1
-  , isWorkerModuleSupported = !1;
-function SupportsWorkerTypeModule() {
+  function AddScript(url) {
+    const elem = document.createElement("script");
+    elem.async = false;
+    elem.type = "module";
+    if (url.isStringSrc) return new Promise(resolve => {
+      const resolveName = "c3_resolve_" + resolveCounter;
+      ++resolveCounter;
+      self[resolveName] = resolve;
+      elem.textContent = url.str + `\n\nself["${resolveName}"]();`;
+      document.head.appendChild(elem)
+    });
+    else return new Promise((resolve, reject) => {
+      elem.onload = resolve;
+      elem.onerror = reject;
+      elem.src = url;
+      document.head.appendChild(elem)
+    })
+  }
+  let didCheckWorkerModuleSupport = false;
+  let isWorkerModuleSupported = false;
+
+  function SupportsWorkerTypeModule() {
     if (!didCheckWorkerModuleSupport) {
-        try {
-            new Worker("blob://",{
-                get type() {
-                    isWorkerModuleSupported = !0
-                }
-            })
-        } catch (a) {}
-        didCheckWorkerModuleSupport = !0
+      try {
+        new Worker("blob://", {
+          get type() {
+            isWorkerModuleSupported = true
+          }
+        })
+      } catch (e) {}
+      didCheckWorkerModuleSupport = true
     }
     return isWorkerModuleSupported
-}
+  }
   let tmpAudio = new Audio;
   const supportedAudioFormats = {
     "audio/webm; codecs=opus": !!tmpAudio.canPlayType("audio/webm; codecs=opus"),
@@ -2014,7 +2014,7 @@ function SupportsWorkerTypeModule() {
     window["c3_runtimeInterface"] = new self.RuntimeInterface({
       useWorker: enableWorker,
       workerMainUrl: "workermain.js",
-      engineScripts: ["https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/scripts/c3runtime.js"],
+      engineScripts: ["scripts/c3runtime.js"],
       projectScripts: [],
       mainProjectScript: "",
       scriptFolder: "scripts/",
