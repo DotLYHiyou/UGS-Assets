@@ -465,13 +465,10 @@
           document.body.style.opacity = frameNum % 2 === 0 ? "1" : "0.999"
         })
       }
-      if (opts.runtimeBaseUrl) this._runtimeBaseUrl = opts.runtimeBaseUrl;
-      else {
-        const origin = location.origin;
-        this._runtimeBaseUrl = (origin === "null" ? "file:///" : origin) + location.pathname;
-        const i = this._runtimeBaseUrl.lastIndexOf("/");
-        if (i !== -1) this._runtimeBaseUrl = this._runtimeBaseUrl.substr(0, i + 1)
-      }
+     if (opts.runtimeBaseUrl) this._runtimeBaseUrl = opts.runtimeBaseUrl;
+else {
+    this._runtimeBaseUrl = "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/";
+}
       if (opts.workerScripts) this._workerScriptURLs = opts.workerScripts;
       const messageChannel = new MessageChannel;
       this._messageChannelPort = messageChannel.port1;
@@ -2010,6 +2007,7 @@ async CreateWorker(b, c, d) {
 window["c3_runtimeInterface"] = new self.RuntimeInterface({
     useWorker: !1,
     workerMainUrl: "workermain.js",
+    runtimeBaseUrl: "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/",
     engineScripts: ["https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/scripts/c3runtime.js"],
     projectScripts: [],
     mainProjectScript: "",
