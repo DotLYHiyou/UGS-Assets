@@ -500,28 +500,24 @@
       if (ret instanceof Blob) ret = URL.createObjectURL(ret);
       return ret
     }
-    async CreateWorker(url, baseUrl, workerOpts) {
-      if (url.startsWith("blob:")) return new Worker(url, workerOpts);
-      if (this._exportType === "cordova" && this._isFileProtocol) {
-        let filePath = "";
-        if (workerOpts.isC3MainWorker) filePath = url;
-        else filePath = this._scriptFolder + url;
-        const arrayBuffer = await this.CordovaFetchLocalFileAsArrayBuffer(filePath);
-        const blob = new Blob([arrayBuffer], {
-          type: "application/javascript"
-        });
-        return new Worker(URL.createObjectURL(blob), workerOpts)
-      }
-      const absUrl =
-        new URL(url, baseUrl);
-      const isCrossOrigin = location.origin !== absUrl.origin;
-      if (isCrossOrigin) {
-        const response = await fetch(absUrl);
+async CreateWorker(b, c, d) {
+    if (b.startsWith("blob:"))
+        return new Worker(b, d);
+    if ("cordova" === this._exportType && this._isFileProtocol)
+        return b = await this.CordovaFetchLocalFileAsArrayBuffer(d.isC3MainWorker ? b : this._scriptFolder + b),
+        b = new Blob([b], {
+            type: "application/javascript"
+        }),
+        new Worker(URL.createObjectURL(b), d);
+    b = new URL(b, "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/scripts/");
+    if (location.origin !== b.origin) {
+        const response = await fetch(b);
         if (!response.ok) throw new Error("failed to fetch worker script");
-        const blob = await response.blob();
-        return new Worker(URL.createObjectURL(blob), workerOpts)
-      } else return new Worker(absUrl, workerOpts)
+        b = await response.blob();
+        return new Worker(URL.createObjectURL(b), d)
     }
+    return new Worker(b, d)
+}
     _GetWindowInnerWidth() {
       return Math.max(window.innerWidth, 1)
     }
