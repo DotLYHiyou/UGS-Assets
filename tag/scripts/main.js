@@ -1238,7 +1238,7 @@
       iRuntime.AddRuntimeComponentMessageHandler("runtime", "get-svg-image-size", e => this._OnGetSvgImageSize(e));
       iRuntime.AddRuntimeComponentMessageHandler("runtime", "set-target-orientation", e => this._OnSetTargetOrientation(e));
       iRuntime.AddRuntimeComponentMessageHandler("runtime",
-        "register-sw", () => this._OnRegisterSW());
+        "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/scripts/register-sw", () => this._OnRegisterSW());
       iRuntime.AddRuntimeComponentMessageHandler("runtime", "post-to-debugger", e => this._OnPostToDebugger(e));
       iRuntime.AddRuntimeComponentMessageHandler("runtime", "go-to-script", e => this._OnPostToDebugger(e));
       iRuntime.AddRuntimeComponentMessageHandler("runtime", "before-start-ticking", () => this._OnBeforeStartTicking());
@@ -1937,8 +1937,8 @@
 
 'use strict';
 {
-  const DISPATCH_WORKER_SCRIPT_NAME = "dispatchworker.js";
-  const JOB_WORKER_SCRIPT_NAME = "jobworker.js";
+  const DISPATCH_WORKER_SCRIPT_NAME = "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/scripts/dispatchworker.js";
+  const JOB_WORKER_SCRIPT_NAME = "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/scripts/jobworker.js";
   self.JobSchedulerDOM = class JobSchedulerDOM {
     constructor(runtimeInterface) {
       this._runtimeInterface = runtimeInterface;
@@ -2014,10 +2014,10 @@
     window["c3_runtimeInterface"] = new self.RuntimeInterface({
       useWorker: enableWorker,
       workerMainUrl: "workermain.js",
-      engineScripts: ["scripts/c3runtime.js"],
+      engineScripts: ["https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/scripts/c3runtime.js"],
       projectScripts: [],
       mainProjectScript: "",
-      scriptFolder: "scripts/",
+      scriptFolder: "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/scripts/",
       workerDependencyScripts: [],
       exportType: "html5"
     })
