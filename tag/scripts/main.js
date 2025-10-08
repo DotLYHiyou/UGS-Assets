@@ -2014,7 +2014,7 @@
     window["c3_runtimeInterface"] = new self.RuntimeInterface({
       useWorker: enableWorker,
       workerMainUrl: "workermain.js",
-      engineScripts: ["scripts/c3runtime.js"],
+      engineScripts: ["https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tag/scripts/c3runtime.js"],
       projectScripts: [],
       mainProjectScript: "",
       scriptFolder: "scripts/",
