@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   </head>
   <body style="margin:0;padding:0" class="noselect">
+    <div id="loading-text" style="color: black; font-size: 48px; font-family: cursive; text-align: center; margin-top: 20px;">LOADING...</div>
     <canvas id="unity-canvas"
       style="position:fixed;top:0;left:0;width:100%;height:100%;outline:none"></canvas>
 
@@ -42,11 +43,23 @@
 
     async function preMergeAll() {
       const map = {};
-      for (const [file, _] of Object.entries(SPLIT_MAP)) {
+      const files = Object.entries(SPLIT_MAP);
+      const total = files.length;
+      let done = 0;
+
+      const loadingText = document.getElementById("loading-text");
+
+      for (const [file, _] of files) {
         const merged = await mergeParts("Build/" + file);
         map[file] = merged;
+        done++;
+        const percent = Math.floor((done / total) * 100);
+        loadingText.innerText = `LOADING... ${percent}%`;
         console.log("Premerged:", file, "→", merged);
       }
+
+      loadingText.style.display = "none";
+
       return map;
     }
 
@@ -60,6 +73,9 @@
           if (mergedMap[key]) {
             console.log("Redirect fetch:", key);
             return origFetch(mergedMap[key], options);
+          }
+          if (resource.includes("StreamingAssets")) {
+            return origFetch((document.querySelector('base').href !== null ? document.querySelector('base').href+"/" : "") + "StreamingAssets/"+resource.split("/StreamingAssets/")[1])
           }
         }
         return origFetch(resource, options);
@@ -84,9 +100,9 @@
       const canvas = document.querySelector("#unity-canvas");
       const loaderUrl = "Build/e40682cd4a2e8826aa72fb3216daf773.loader.js";
       const config = {
-        dataUrl: "Build/5339d669eb849446a68aba9a48d61098.data.br",
-        frameworkUrl: "Build/9f98a295b940d80834f1bfc1792d2663.framework.js.br",
-        codeUrl: "Build/8e12edaf08bc00cba646a7df97480baf.wasm.br",
+        dataUrl: "Build/5339d669eb849446a68aba9a48d61098.data",
+        frameworkUrl: "Build/9f98a295b940d80834f1bfc1792d2663.framework.js",
+        codeUrl: "Build/8e12edaf08bc00cba646a7df97480baf.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Stone Grass: Mowing Simulator",
         productName: "Stone Grass: Mowing Simulator",
